@@ -1,28 +1,14 @@
-import { Router  } from "express";
+import { Router } from "express";
+import {getAllNotes, createNewNote, updateNote, deleteNote} from "../controllers/noteController.js";
 
+const router = Router();
 
-const router = Router()
+router.get("/", getAllNotes);
 
-router.get("/", (req, res) => {
-  res.status(200).send("you have a bunch of notes");
-  return;
-})
+router.post("/", createNewNote)
 
-router.post("/", (req, res) => {
-  console.log("POST endpoint reached");
-  res.status(200).json({ message: "note created successfully" });
-})
+router.put("/", updateNote);
 
-router.put("/", (req, res) => {
-  const {id} = req.params
-  console.log(`POST endpoint reached ${id}`);
-  res.status(200).json({ message: "note updated successfully" });
-})
+router.delete("/", deleteNote);
 
-router.delete("/", (req, res) => {
-  const {id} = req.params
-  console.log(`POST endpoint reached ${id}`);
-  res.status(200).json({ message: "note deleted successfully" });
-})
-
-export default router
+export default router;
